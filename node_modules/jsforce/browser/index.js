@@ -1,0 +1,14 @@
+import jsforce from './jsforce';
+import './api/analytics';
+import './api/apex';
+import './api/bulk';
+import './api/bulk2';
+import './api/chatter';
+import './api/metadata';
+import './api/soap';
+import './api/streaming';
+import './api/tooling';
+export * from './types';
+export * from './core';
+export default jsforce;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJqc2ZvcmNlIl0sInNvdXJjZXMiOlsiLi4vc3JjL2luZGV4LnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBqc2ZvcmNlIGZyb20gJy4vanNmb3JjZSc7XG5pbXBvcnQgJy4vYXBpL2FuYWx5dGljcyc7XG5pbXBvcnQgJy4vYXBpL2FwZXgnO1xuaW1wb3J0ICcuL2FwaS9idWxrJztcbmltcG9ydCAnLi9hcGkvYnVsazInO1xuaW1wb3J0ICcuL2FwaS9jaGF0dGVyJztcbmltcG9ydCAnLi9hcGkvbWV0YWRhdGEnO1xuaW1wb3J0ICcuL2FwaS9zb2FwJztcbmltcG9ydCAnLi9hcGkvc3RyZWFtaW5nJztcbmltcG9ydCAnLi9hcGkvdG9vbGluZyc7XG5leHBvcnQgKiBmcm9tICcuL3R5cGVzJztcbmV4cG9ydCAqIGZyb20gJy4vY29yZSc7XG5leHBvcnQgZGVmYXVsdCBqc2ZvcmNlO1xuIl0sIm1hcHBpbmdzIjoiQUFBQSxPQUFPQSxPQUFPLE1BQU0sV0FBVztBQUMvQixPQUFPLGlCQUFpQjtBQUN4QixPQUFPLFlBQVk7QUFDbkIsT0FBTyxZQUFZO0FBQ25CLE9BQU8sYUFBYTtBQUNwQixPQUFPLGVBQWU7QUFDdEIsT0FBTyxnQkFBZ0I7QUFDdkIsT0FBTyxZQUFZO0FBQ25CLE9BQU8saUJBQWlCO0FBQ3hCLE9BQU8sZUFBZTtBQUN0QixjQUFjLFNBQVM7QUFDdkIsY0FBYyxRQUFRO0FBQ3RCLGVBQWVBLE9BQU8iLCJpZ25vcmVMaXN0IjpbXX0=
