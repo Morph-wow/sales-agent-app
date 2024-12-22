@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const { testSalesforceConnection } = require('./salesforce');
 const { startTelegramBot } = require('./telegram');
 
-// Carica le variabili di ambiente
 dotenv.config();
 
 const app = express();
