@@ -1,16 +1,30 @@
 const { Telegraf } = require('telegraf');
 const dotenv = require('dotenv');
-const { getNewLeads } = require('./salesforce');
+const { getNewLeads, getLatestLeads } = require('./salesforce');
 
 dotenv.config();
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
 //Funzione per  normalizzare i numeri di telefono
-function normalizePhoneNumber(phone) {
-    if (!phone) return "N/A"; // Se il campo è vuoto
-    return phone.replace(/[^\d+]/g, ''); // Rimuove tutto tranne i numeri e il simbolo "+"
+function normalizePhoneNumber(phone, mobilePhone) {
+    const numberToNormalize = mobilePhone || phone; // Usa MobilePhone se presente, altrimenti Phone
+    if (!numberToNormalize) return "N/A"; // Se entrambi i campi sono vuoti
+
+    let normalizedNumber = numberToNormalize.trim();
+
+    if (normalizedNumber.startsWith('+')) {
+        // Se il numero ha il prefisso internazionale, formattalo con gli spazi dopo il prefisso
+        return normalizedNumber.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+    } else {
+        // Se il numero non ha prefisso, aggiungi spazi senza prefisso
+        return normalizedNumber.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
+    }
 }
+
+
+
+
 
 //Funzione per  formattare i lead
 function formatLeadMessage(lead, index = null) {
@@ -20,12 +34,13 @@ function formatLeadMessage(lead, index = null) {
     }
     message += `- *Nome*: ${lead.FirstName || "[non fornito]"} ${lead.LastName || "[non fornito]"}\n`;
     message += `- *Email*: ${lead.Email || "[non fornito]"}\n`;
-    message += `- *Telefono*: ${normalizePhoneNumber(lead.Phone)}\n`;
+    message += `- *Telefono*: ${normalizePhoneNumber(lead.Phone, lead.MobilePhone)}\n`;
     message += `- *Azienda*: ${lead.Company || "[non fornito]"}\n`;
     message += `- *Fonte*: ${lead.LeadSource || "N/A"}\n`;
     message += `- *ID Cliente*: ${lead.Id}\n\n`;
     return message;
 }
+
 
 
 // Funzione principale per avviare il bot
@@ -67,6 +82,13 @@ bot.command('latestleads', async (ctx) => {
         if (leads.length > 0) {
             let message = '*Ultimi 10 lead:*\n';
             leads.forEach((lead, index) => {
+                  // Log per verificare i dati originali del numero di telefono
+                  console.log(`Lead #${index + 1} - Telefono originale: ${lead.Phone}`);
+
+                   // Log per verificare il numero normalizzato
+                const normalizedPhone = normalizePhoneNumber(lead.Phone);
+                console.log(`Lead #${index + 1} - Telefono normalizzato: ${normalizedPhone}`);
+
                 message += formatLeadMessage(lead, index);
             });
             ctx.replyWithMarkdown(message);
