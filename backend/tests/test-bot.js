@@ -1,5 +1,4 @@
-const { startTelegramBot } = require('../telegram/bot');
-// Percorso relativo alla cartella `test`
+const { sendToTelegram } = require('../telegram/telegramsender'); // Percorso corretto a telegramsender.js
 
 console.log("Tipo di sendToTelegram:", typeof sendToTelegram);
 

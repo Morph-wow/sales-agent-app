@@ -1,6 +1,7 @@
 const { conn } = require('./api');
 const faye = require('faye');
-const { sendToTelegram } = require('../telegram/bot'); // Importa la funzione per inviare messaggi a Telegram
+const { sendToTelegram } = require('../telegram/telegramsender'); // Usa telegramsender.js per inviare messaggi
+const { formatLeadMessage } = require('../formatters'); // Importa la funzione di formattazione
 
 // Funzione per normalizzare i numeri di telefono
 const normalizePhoneNumber = (phone, mobilePhone) => {
@@ -10,26 +11,10 @@ const normalizePhoneNumber = (phone, mobilePhone) => {
   let normalizedNumber = numberToNormalize.trim();
 
   if (normalizedNumber.startsWith('+')) {
-    return normalizedNumber.replace(/^(\\+\\d{1,3})(\\d{3})(.*)$/, '$1 $2 $3').trim();
+    return normalizedNumber.replace(/^\+(\d{1,3})(\d{3})(.*)$/, '$1 $2 $3').trim();
   }
 
-  return normalizedNumber.replace(/^(\\d{3})(.*)$/, '$1 $2').trim();
-};
-
-// Funzione per formattare i lead
-const formatLeadMessage = (lead, index = null) => {
-  let message = '';
-  if (index !== null) {
-    message += `#${index + 1}\n`;
-  }
-  message += `- *Nome*: ${lead.FirstName || "[non fornito]"} ${lead.LastName || "[non fornito]"}\n`;
-  message += `- *Email*: ${lead.Email || "[non fornito]"}\n`;
-  message += `- *Telefono*: ${normalizePhoneNumber(lead.Phone, lead.MobilePhone)}\n`;
-  message += `- *Azienda*: ${lead.Company || "[non fornito]"}\n`;
-  message += `- *Fonte*: ${lead.LeadSource || "N/A"}\n`;
-  message += `- *Tipo di Richiesta*: ${lead.Tipo_di_Richiesta__c || "N/A"}\n`;
-  message += `- *ID Cliente*: ${lead.Id}\n\n`;
-  return message;
+  return normalizedNumber.replace(/^(\d{3})(.*)$/, '$1 $2').trim();
 };
 
 // Funzione per ascoltare nuovi lead tramite PushTopic
@@ -56,24 +41,17 @@ const listenForNewLeads = async () => {
     const subscription = client.subscribe('/topic/NewLeadPushTopic', (message) => {
       console.log("Nuovo lead ricevuto:", message);
 
-      const { FirstName, LastName, Email, MobilePhone, Tipo_di_Richiesta__c } = message.sobject;
+      const formattedMessage = formatLeadMessage(message.sobject); // Usa formatLeadMessage
 
-      if (!FirstName || !LastName || !Email || !MobilePhone) {
-        console.warn("Lead ricevuto con campi obbligatori mancanti:", message.sobject);
+      if (!formattedMessage) {
+        console.warn("Messaggio formattato non valido per il lead ricevuto:", message.sobject);
         return;
       }
 
-      const leadDetails = `
-        Nuovo Lead Ricevuto!
-        Nome: ${FirstName} ${LastName}
-        Email: ${Email}
-        Cellulare: ${MobilePhone}
-        Tipo di Richiesta: ${Tipo_di_Richiesta__c || "Non specificato"}
-      `;
-
       // Invio del messaggio a Telegram
       console.log("Invio dei dettagli del lead al bot Telegram...");
-      sendToTelegram(leadDetails);
+      console.log("Messaggio pronto per Telegram:", formattedMessage);
+      sendToTelegram(formattedMessage);
     });
 
     subscription.callback(() => {

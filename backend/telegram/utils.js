@@ -1,9 +1,10 @@
 const { sendToTelegram } = require('./bot'); // Importa la funzione per inviare messaggi a Telegram
 
+
 // Funzione per formattare messaggi generici per Telegram
 const formatTelegramMessage = (message) => {
   // Applicazione di eventuale formattazione al messaggio prima di inviarlo
-  return message;
+  return `*${message}*`;
 };
 
 // Debug: verifica del caricamento del file
