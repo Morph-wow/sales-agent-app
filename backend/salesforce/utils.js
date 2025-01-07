@@ -2,6 +2,7 @@ const { conn } = require('./api');
 const faye = require('faye');
 const { sendToTelegram } = require('../telegram/telegramsender'); // Usa telegramsender.js per inviare messaggi
 const { formatLeadMessage } = require('../formatters'); // Importa la funzione di formattazione
+const processedLeads = new Set(); // Traccia gli ID dei lead già elaborati
 
 // Funzione per normalizzare i numeri di telefono
 const normalizePhoneNumber = (phone, mobilePhone) => {
@@ -41,6 +42,17 @@ const listenForNewLeads = async () => {
     const subscription = client.subscribe('/topic/NewLeadPushTopic', (message) => {
       console.log("Nuovo lead ricevuto:", message);
 
+      const leadId = message.sobject.Id;
+
+      // Controllo per evitare duplicati
+      if (processedLeads.has(leadId)) {
+        console.log(`Il lead con ID ${leadId} è già stato processato. Ignorando.`);
+        return;
+      }
+
+      // Aggiungi l'ID al set dei lead elaborati
+      processedLeads.add(leadId);
+      
       const formattedMessage = formatLeadMessage(message.sobject); // Usa formatLeadMessage
 
       if (!formattedMessage) {
