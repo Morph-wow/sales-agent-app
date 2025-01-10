@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for telegramsender.js</title>
+    <title>Code coverage report for parsing/normalizers.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> telegramsender.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">parsing</a> normalizers.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/25</span>
+                <span class='fraction'>21/25</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">45.45% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>5/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/25</span>
+                <span class='fraction'>21/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,13 +121,17 @@
 <a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -137,97 +141,93 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Telegraf } = require('telegraf');
-const dotenv = require('dotenv');
-dotenv.config({ path: __dirname + '/../.env' });
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { parse, format, addDays } = require('date-fns');
+const { it } = require('date-fns/locale'); // Per supporto lingua italiana
+const { zonedTimeToUtc } = require('date-fns-tz'); // Import corretto
+const salesforceApi = require('../salesforce/api');
 &nbsp;
-console.log("Token Telegram:", process.env.TELEGRAM_BOT_TOKEN);
-console.log("Chat ID:", process.env.TELEGRAM_CHAT_ID);
+// Funzione per normalizzare data e ora
+function normalizeDateTime(day, time) {
+  const today = new Date();
+  let targetDate;
 &nbsp;
-const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (day.toLowerCase() === 'domani') {
+<span class="cstat-no" title="statement not covered" >    targetDate = addDays(today, 1); </span>// Aggiungi un giorno
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (day.toLowerCase() === 'dopodomani') {
+<span class="cstat-no" title="statement not covered" >    targetDate = addDays(today, 2); </span>// Aggiungi due giorni
+  } else {
+    // Gestione dei giorni della settimana
+    const daysOfWeek = {
+      lunedì: 1,
+      martedì: 2,
+      mercoledì: 3,
+      giovedì: 4,
+      venerdì: 5,
+      sabato: 6,
+      domenica: 0,
+    };
 &nbsp;
-// Funzione per sanificare i messaggi Markdown
-function sanitizeMarkdown(text) {
-  // Escapa solo i caratteri speciali richiesti da MarkdownV2
-  return text.replace(/([_*\[\]()~`&gt;#+\-=|{}.!])/g, '\\$1');
+    const targetDay = daysOfWeek[day.toLowerCase().replace(' prossimo', '')];
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (targetDay === undefined) <span class="cstat-no" title="statement not covered" >throw new Error('Giorno non riconosciuto');</span>
+&nbsp;
+    const todayDay = today.getDay();
+    const diffDays = day.includes('prossimo')
+      ? <span class="branch-0 cbranch-no" title="branch not covered" >(targetDay - todayDay + 7) % 7 + 7 </span>// Salta alla settimana successiva
+      : (targetDay - todayDay + 7) % 7;
+&nbsp;
+    targetDate = addDays(today, diffDays);
+  }
+&nbsp;
+  // Imposta l'ora
+  const [hours, minutes = <span class="branch-0 cbranch-no" title="branch not covered" >0]</span> = time.split(':').map(Number);
+  targetDate.setHours(hours, minutes, 0, 0);
+&nbsp;
+  return targetDate.toISOString(); // Restituisce il formato ISO con millisecondi
 }
 &nbsp;
-&nbsp;
-&nbsp;
-// Per i messaggi che necessitano di MarkdownV2
-async function sendMessage(chatId, message) {
-  try {
-    const sanitizedMessage = sanitizeMarkdown(message); // Escapare correttamente il messaggio
-    const result = await bot.telegram.sendMessage(chatId, sanitizedMessage, {
-      parse_mode: 'MarkdownV2',
-    });
-    console.log("Messaggio inviato a Telegram (MarkdownV2):", sanitizedMessage);
-    return result; // Assicurati di restituire il risultato
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error("Errore durante l'invio del messaggio a Telegram (MarkdownV2):", error);</span>
-<span class="cstat-no" title="statement not covered" >    throw error; </span>// Solleva l'errore per il test
+// Funzione per trovare un cliente su Salesforce
+async function findClientByName(clientName) {
+  const query = `SELECT Id FROM Contact WHERE Name = '${clientName}' LIMIT 1`;
+  const result = await salesforceApi.query(query);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (result.records.length &gt; 0) {
+    return result.records[0].Id;
   }
+<span class="cstat-no" title="statement not covered" >  throw new Error('Cliente non trovato');</span>
 }
 &nbsp;
-&nbsp;
-&nbsp;
-// Per i messaggi statici senza parsing
-const sendRawMessage = <span class="fstat-no" title="function not covered" >as</span>ync (chatId, message) =&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    await bot.telegram.sendMessage(chatId, message); </span>// Invio senza parse_mode
-<span class="cstat-no" title="statement not covered" >    console.log("Messaggio inviato a Telegram (Raw):", message);</span>
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error("Errore durante l'invio del messaggio a Telegram (Raw):", error);</span>
-  }
-};
-&nbsp;
-// Per inviare il messaggio del nuovo lead
-const sendToTelegram = <span class="fstat-no" title="function not covered" >as</span>ync (message) =&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const chatId = <span class="cstat-no" title="statement not covered" >process.env.TELEGRAM_CHAT_ID;</span>
-<span class="cstat-no" title="statement not covered" >    await sendRawMessage(chatId, message);</span>
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error("Errore durante l'invio del messaggio al bot Telegram:", error);</span>
-  }
-};
-&nbsp;
-module.exports = { sendToTelegram, sendMessage, sanitizeMarkdown };
+module.exports = { normalizeDateTime, findClientByName };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -235,16 +235,16 @@ module.exports = { sendToTelegram, sendMessage, sanitizeMarkdown };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-10T11:50:40.212Z
+                at 2025-01-10T10:56:04.501Z
             </div>
-        <script src="prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     

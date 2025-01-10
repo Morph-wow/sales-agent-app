@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for backend/salesforce/api.js</title>
+    <title>Code coverage report for parsing/modules/actionhandler.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">backend/salesforce</a> api.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">parsing/modules</a> actionhandler.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">59.45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/45</span>
+                <span class='fraction'>22/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">35.29% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>6/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">59.45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/45</span>
+                <span class='fraction'>22/37</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -157,85 +157,55 @@
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,108 +213,144 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const jsforce = require('jsforce');
-const faye = require('faye');
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
+const path = require('path');
+const { normalizeDateTime, findClientByName } = require('../normalizers'); // Import normalizers
 require('dotenv').config();
 &nbsp;
-const conn = new jsforce.Connection({
-  loginUrl: process.env.SALESFORCE_LOGIN_URL,
+&nbsp;
+&nbsp;
+// Configurazione OpenAI
+const OpenAI = require('openai');
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // Assicurati che la variabile di ambiente sia impostata
 });
 &nbsp;
-// Test connessione a Salesforce
-const testSalesforceConnection = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Tentativo di connessione a Salesforce...");</span>
-<span class="cstat-no" title="statement not covered" >    await conn.login(process.env.SALESFORCE_USERNAME, process.env.SALESFORCE_PASSWORD);</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Connesso a Salesforce con successo!");</span>
+const DEFAULT_CHAT_ID = process.env.TELEGRAM_CHAT_ID || <span class="branch-1 cbranch-no" title="branch not covered" >'default_chat_id';</span>
 &nbsp;
-    // Log dell'access token e dell'endpoint
-<span class="cstat-no" title="statement not covered" >    console.log("Access Token:", conn.accessToken);</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Instance URL:", conn.instanceUrl);</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Streaming Endpoint URL:", conn.streaming.endpointUrl);</span>
-&nbsp;
-    const identity = <span class="cstat-no" title="statement not covered" >await conn.identity();</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Dettagli identità utente:", identity);</span>
-  } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.error("Errore nella connessione a Salesforce:", err);</span>
-  }
+// Mappatura tra intent e file delle azioni
+const intentActionMap = {
+  schedule_appointment: require('./actions/scheduleappointment'),
+  set_appointment: require('./actions/scheduleappointment'),
+  cancel_appointment: require('./actions/cancelappointment'),
+  default: require('./actions/defaultaction'),
 };
 &nbsp;
-// Recupera nuovi lead
-const getNewLeads = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Recupero nuovi lead da Salesforce...");</span>
-    const query = <span class="cstat-no" title="statement not covered" >"SELECT Id, FirstName, LastName, Email, Phone, MobilePhone, Company, LeadSource, Tipo_di_Richiesta__c FROM Lead WHERE IsConverted = false ORDER BY CreatedDate DESC LIMIT 10";</span>
-    const result = <span class="cstat-no" title="statement not covered" >await conn.query(query);</span>
 &nbsp;
-    // Log del risultato dei lead
-<span class="cstat-no" title="statement not covered" >    console.log("Lead recuperati:", result.records);</span>
-<span class="cstat-no" title="statement not covered" >    return result.records;</span>
-  } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.error("Errore durante il recupero dei lead da Salesforce:", err);</span>
-<span class="cstat-no" title="statement not covered" >    return [];</span>
-  }
-};
 &nbsp;
-// Recupera ultimi 10 lead
-const getLatestLeads = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    console.log('Recupero gli ultimi 10 lead da Salesforce...');</span>
-    const query = <span class="cstat-no" title="statement not covered" >`</span>
-      SELECT Id, FirstName, LastName, Email, Phone, MobilePhone, Company, LeadSource, Tipo_di_Richiesta__c 
-      FROM Lead
-      ORDER BY CreatedDate DESC
-      LIMIT 10
-    `;
-    const result = <span class="cstat-no" title="statement not covered" >await conn.query(query);</span>
 &nbsp;
-    // Log dei lead recuperati
-<span class="cstat-no" title="statement not covered" >    console.log("Ultimi 10 lead:", result.records);</span>
-<span class="cstat-no" title="statement not covered" >    return result.records;</span>
-  } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.error('Errore durante il recupero degli ultimi 10 lead da Salesforce:', err);</span>
-<span class="cstat-no" title="statement not covered" >    throw err;</span>
-  }
-};
 &nbsp;
-// Recupera sessione Salesforce
-const getSalesforceSession = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    if (!conn.accessToken || !conn.instanceUrl) {</span>
-<span class="cstat-no" title="statement not covered" >      console.log("Access Token o Instance URL non presente. Eseguo il login...");</span>
-<span class="cstat-no" title="statement not covered" >      await conn.login(process.env.SALESFORCE_USERNAME, process.env.SALESFORCE_PASSWORD);</span>
+class ActionHandler {
+  async handle(parsedInput, context) {
+    const { intent, entities } = parsedInput;
+&nbsp;
+    // Assicurati che il contesto contenga un chatId valido
+    const chatId = context?.chatId || <span class="branch-1 cbranch-no" title="branch not covered" >DEFAULT_CHAT_ID;</span>
+&nbsp;
+    // Log per debugging
+    console.log("Intent rilevato:", intent);
+    console.log("Entità estratte:", entities);
+    console.log("Chat ID utilizzato:", chatId);
+&nbsp;
+    // Pre-elaborazione delle entità
+    try {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (intent === 'schedule_appointment' || <span class="branch-1 cbranch-no" title="branch not covered" >intent === 'set_appointment')</span> {
+        console.log("Pre-elaborazione delle entità per appuntamento...");
+        const { time, date, clientName } = entities;
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!time || <span class="branch-1 cbranch-no" title="branch not covered" >!date </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >!clientName)</span> {
+          throw new Error("Dati mancanti: assicurati che nome, data e ora siano forniti.");
+        }
+&nbsp;
+        // Normalizzazione di data e ora
+<span class="cstat-no" title="statement not covered" >        entities.dateTime = normalizeDateTime(date, time); </span>// Aggiunge la data/ora normalizzata
+<span class="cstat-no" title="statement not covered" >        console.log("Data e ora normalizzate:", entities.dateTime);</span>
+&nbsp;
+        // Ricerca del cliente
+<span class="cstat-no" title="statement not covered" >        entities.clientId = await findClientByName(clientName); </span>// Aggiunge l'ID del cliente
+<span class="cstat-no" title="statement not covered" >        console.log("ID cliente trovato:", entities.clientId);</span>
+      }
+    } catch (error) {
+      console.error("Errore durante la pre-elaborazione delle entità:", error.message);
+      return {
+        status: 'error',
+        context: { ...context, chatId },
+        message: `Errore durante la preparazione dei dati: ${error.message}`,
+      };
     }
 &nbsp;
-    // Log della sessione recuperata
-<span class="cstat-no" title="statement not covered" >    console.log("Access Token:", conn.accessToken);</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Instance URL:", conn.instanceUrl);</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Streaming Endpoint URL:", conn.streaming.endpointUrl);</span>
+    // Trova l'azione corrispondente all'intent
+    const action = <span class="cstat-no" title="statement not covered" >intentActionMap[intent] || intentActionMap.default;</span>
+<span class="cstat-no" title="statement not covered" >    if (!action) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error(`Errore: l'azione mappata per l'intent "${intent}" non contiene un metodo execute.`);</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        status: 'error',
+        context: { ...context, chatId },
+        message: `Comando non riconosciuto. Intent rilevato: "${intent}".`,
+      };
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return {</span>
-      accessToken: conn.accessToken,
-      instanceUrl: conn.instanceUrl,
-    };
-  } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.error("Errore nel recupero della sessione Salesforce:", err);</span>
-<span class="cstat-no" title="statement not covered" >    throw err;</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      // Esegui l'azione corrispondente
+<span class="cstat-no" title="statement not covered" >      console.log(`Esecuzione dell'azione per l'intent "${intent}"...`);</span>
+      const result = <span class="cstat-no" title="statement not covered" >await action.execute({ entities, context, openai });</span>
+<span class="cstat-no" title="statement not covered" >      console.log(`Azione per l'intent "${intent}" eseguita con successo.`);</span>
+<span class="cstat-no" title="statement not covered" >      return result;</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      console.error(`Errore durante l'esecuzione dell'azione per l'intent "${intent}":`, error.message);</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        status: 'error',
+        context: { ...context, chatId },
+        message: `Errore durante l'esecuzione dell'azione per l'intent "${intent}".`,
+        error: error.message,
+      };
+    }
   }
-};
+}
 &nbsp;
-module.exports = {
-  testSalesforceConnection,
-  getNewLeads,
-  getLatestLeads,
-  getSalesforceSession,
-  conn,
-};
+module.exports = new ActionHandler();
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -352,7 +358,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-10T09:10:39.223Z
+                at 2025-01-10T11:56:33.528Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

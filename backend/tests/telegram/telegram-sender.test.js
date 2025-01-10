@@ -1,16 +1,38 @@
-const { sendToTelegram } = require('../../telegram/telegramsender.js');
+const telegramSender = require('../../telegram/telegramsender');
 
-test.only('Deve inviare un messaggio al bot Telegram (reale)', async () => {
-  try {
-    const response = await sendToTelegram('Messaggio di prova');
+describe('telegramsender.js', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-    // Accettiamo che la funzione restituisca undefined
-    expect(response).toBeUndefined();
+  test.skip('Deve inviare un messaggio al bot Telegram (reale)', async () => {
+    const chatId = 164653608;
+    const message = 'Messaggio di prova';
 
-    // Log per confermare il successo del test
+    const result = await telegramSender.sendMessage(chatId, message);
+
+    expect(result).toBeDefined();
     console.log('Il messaggio è stato inviato correttamente!');
-  } catch (error) {
-    console.error('Errore durante il test:', error);
-    throw new Error('Il test per l’invio del messaggio non è passato.');
-  }
-}, 10000);
+  });
+
+  test('Invia un messaggio reale a Telegram', async () => {
+    const chatId = 164653608; // Chat ID valido
+    const message = "Messaggio *con* caratteri _speciali_.";
+  
+    const result = await telegramSender.sendMessage(chatId, message);
+  
+    expect(result).toBeDefined(); // Verifica che result non sia undefined
+    console.log("Messaggio inviato a Telegram:", result);
+  });
+  
+
+  test('Sanitizza correttamente i caratteri MarkdownV2', () => {
+    const input = "Messaggio *con* caratteri _speciali_.";
+    const expectedOutput = "Messaggio \\*con\\* caratteri \\_speciali\\_\\.";
+
+    const sanitizedMessage = telegramSender.sanitizeMarkdown(input);
+
+    expect(sanitizedMessage).toBe(expectedOutput);
+  });
+});
+

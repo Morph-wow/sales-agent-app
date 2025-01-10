@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for backend/formatters.js</title>
+    <title>Code coverage report for parsing/modules/outputhandler.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">backend</a> formatters.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">parsing/modules</a> outputhandler.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">81.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/9</span>
+                <span class='fraction'>13/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>7/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/9</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,98 +96,89 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const telegramSender = require('../../telegram/telegramsender');
+const DEFAULT_CHAT_ID = process.env.TELEGRAM_CHAT_ID || <span class="branch-1 cbranch-no" title="branch not covered" >'default_chat_id';</span>
 &nbsp;
-// Funzione per formattare un lead come messaggio generico
-const formatLeadMessage = <span class="fstat-no" title="function not covered" >(l</span>ead) =&gt; {
-    const message = <span class="cstat-no" title="statement not covered" >`</span>
-      Nuovo Lead Ricevuto
-      Nome: ${lead.FirstName || 'N/A'} ${lead.LastName || 'N/A'}
-      Email: ${lead.Email || 'N/A'}
-      Cellulare: ${lead.MobilePhone || 'Non specificato'}
-      Tipo di Richiesta: ${lead.Tipo_di_Richiesta__c || 'Non specificato'}
-    `;
-<span class="cstat-no" title="statement not covered" >    return message.trim(); </span>// Rimuove eventuali spazi vuoti extra
-  };
-  
-  // Funzione per formattare un lead specificamente per Telegram
-  const formatTelegramMessage = <span class="fstat-no" title="function not covered" >(l</span>ead) =&gt; {
-<span class="cstat-no" title="statement not covered" >    return `</span>
-      *Nuovo Lead Ricevuto*
-      Nome: ${lead.FirstName} ${lead.LastName}
-      Email: ${lead.Email}
-      Cellulare: ${lead.MobilePhone || 'Non specificato'}
-      Tipo di Richiesta: ${lead.Tipo_di_Richiesta__c || 'Non specificato'}
-    `;
-  };
-  
-  module.exports = { formatTelegramMessage };
-  
-  
-  // Debug: verifica del caricamento del file
-  console.log("Caricamento di formatters.js avvenuto con successo.");
-  console.log("Funzioni esportate:", {
-    formatLeadMessage: typeof formatLeadMessage,
-    formatTelegramMessage: typeof formatTelegramMessage,
-  });
-  
-  module.exports = { formatLeadMessage, formatTelegramMessage };
-  </pre></td></tr></table></pre>
+class OutputHandler {
+    async generate(actionResult) {
+        try {
+            console.log("Generazione output per actionResult:", actionResult);
+&nbsp;
+            const chatId = actionResult.context?.chatId || DEFAULT_CHAT_ID;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!chatId) <span class="cstat-no" title="statement not covered" >throw new Error("chatId non definito o mancante.");</span>
+&nbsp;
+            const sanitizedMessage = telegramSender.sanitizeMarkdown(
+                actionResult.message || <span class="branch-1 cbranch-no" title="branch not covered" >"Errore sconosciuto."</span>
+            );
+&nbsp;
+            switch (actionResult.status) {
+                case 'success':
+                    return await telegramSender.sendMessage(chatId, `Azione completata con successo: ${sanitizedMessage}`);
+                case 'error':
+                    return await telegramSender.sendMessage(chatId, `Errore: ${sanitizedMessage}`);
+<span class="branch-2 cbranch-no" title="branch not covered" >                case 'info':</span>
+<span class="cstat-no" title="statement not covered" >                    return await telegramSender.sendMessage(chatId, `Info: ${sanitizedMessage}`);</span>
+<span class="branch-3 cbranch-no" title="branch not covered" >                default:</span>
+<span class="cstat-no" title="statement not covered" >                    return await telegramSender.sendMessage(chatId, "Stato della risposta sconosciuto.");</span>
+            }
+        } catch (error) {
+            console.error("Errore durante la generazione dell'output:", error.message);
+            throw error;
+        }
+    }
+}
+&nbsp;
+module.exports = new OutputHandler();
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-10T09:10:39.223Z
+                at 2025-01-10T11:51:33.006Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

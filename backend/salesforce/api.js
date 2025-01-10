@@ -62,6 +62,22 @@ const getLatestLeads = async () => {
   }
 };
 
+// Esegue una query generica su Salesforce
+const query = async (queryString) => {
+  try {
+    console.log("Esecuzione query su Salesforce:", queryString);
+    const result = await conn.query(queryString);
+
+    // Log del risultato
+    console.log("Risultato della query:", result.records);
+    return result.records;
+  } catch (err) {
+    console.error("Errore durante l'esecuzione della query:", err);
+    throw err;
+  }
+};
+
+
 // Recupera sessione Salesforce
 const getSalesforceSession = async () => {
   try {
@@ -90,5 +106,6 @@ module.exports = {
   getNewLeads,
   getLatestLeads,
   getSalesforceSession,
+  query,
   conn,
 };

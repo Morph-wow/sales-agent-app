@@ -3,7 +3,7 @@
 // Funzione per formattare un lead come messaggio generico
 const formatLeadMessage = (lead) => {
     const message = `
-      Nuovo Lead Ricevuto!
+      Nuovo Lead Ricevuto
       Nome: ${lead.FirstName || 'N/A'} ${lead.LastName || 'N/A'}
       Email: ${lead.Email || 'N/A'}
       Cellulare: ${lead.MobilePhone || 'Non specificato'}
@@ -15,7 +15,7 @@ const formatLeadMessage = (lead) => {
   // Funzione per formattare un lead specificamente per Telegram
   const formatTelegramMessage = (lead) => {
     return `
-      *Nuovo Lead Ricevuto!*
+      *Nuovo Lead Ricevuto*
       Nome: ${lead.FirstName} ${lead.LastName}
       Email: ${lead.Email}
       Cellulare: ${lead.MobilePhone || 'Non specificato'}
