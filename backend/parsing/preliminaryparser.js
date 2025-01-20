@@ -1,19 +1,23 @@
-const { Configuration, OpenAIApi } = require('openai');
+require('dotenv').config();
+const { OpenAI } = require('openai');
+
+// Configura l'istanza OpenAI
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY, // Usa la chiave API dal file .env
+});
 
 class PreliminaryParser {
-    constructor({ openaiClient }) {
-        this.openaiClient = openaiClient;
-    }
-
     async extractName(rawMessage) {
         try {
-            const prompt = `Analizza il seguente messaggio e restituisci solo il nome  del cliente. Se non trovi un nome, restituisci "Nessun nome trovato".\n\n"${rawMessage}"`;
-            
-            const response = await this.openaiClient.chat.completions.create({
-                model: "gpt-3.5-turbo", // Modello economico per operazioni semplici
+            const prompt = `Analizza il seguente messaggio e restituisci solo il nome del cliente. Se non trovi un nome, restituisci "Nessun nome trovato".\n\n"${rawMessage}"`;
+
+            // Chiamata al completamento di chat
+            const response = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
                 messages: [{ role: "user", content: prompt }],
             });
 
+            // Estrazione del nome dalla risposta
             const extractedName = response.choices[0].message.content.trim();
 
             if (extractedName === "Nessun nome trovato") {

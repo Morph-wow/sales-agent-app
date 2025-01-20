@@ -67,6 +67,10 @@ const startTelegramBot = () => {
 
                 console.log(`Messaggio ricevuto dall'utente: ${userMessage}`);
 
+                    // Log del parser e delle sue funzioni
+                 console.log('Parser importato:', parser);
+                console.log('Funzioni disponibili in parser:', Object.keys(parser));
+
                 // Analizza il messaggio con il parser
                 const response = await parser.parseMessage(userMessage, context);
                 console.log("Risposta generata dal parser:", response);

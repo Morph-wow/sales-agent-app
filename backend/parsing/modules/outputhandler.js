@@ -1,32 +1,46 @@
-const telegramSender = require('./telegram/telegramsender');
+const { sendMessage, sanitizeMarkdown } = require('../../telegram/telegramsender');
+const { formatVerificationMessage, formatSuccessMessage } = require('../../formatters');
 
 class OutputHandler {
-  async generate(output) {
-    const { status, message, context } = output;
-    const chatId = context.chatId;
+  /**
+   * Genera e invia un messaggio di output basato sul risultato dell'azione.
+   * @param {Object} actionResult - Risultato dell'azione eseguita.
+   * @returns {Object} Stato del messaggio inviato o errore.
+   */
+  async generate(actionResult) {
+    const { status, message, context, verificationOptions } = actionResult;
+    const { chatId } = context;
 
     if (!chatId) {
-      const errorMessage = "Chat ID mancante o non valido.";
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+      console.error('Errore: chatId non definito o mancante.');
+      throw new Error('chatId non definito o mancante.');
     }
 
-    const sanitizedMessage = this.sanitizeMessage(message);
-
     try {
-      console.log(`Invio messaggio al chat ID ${chatId}:`, sanitizedMessage);
-      await telegramSender.sendMessage(chatId, sanitizedMessage);
-      console.log("Messaggio inviato con successo.");
+      let formattedMessage;
+
+      if (status === 'verification') {
+        // Messaggio di verifica con opzioni multiple
+        formattedMessage = formatVerificationMessage(verificationOptions);
+      } else if (status === 'success') {
+        formattedMessage = formatSuccessMessage(); // Usa il messaggio generico
+      } else {
+        formattedMessage = "Errore durante l'esecuzione dell'azione.";
+      }
+
+      const result = await sendMessage(chatId, formattedMessage);
+      console.log("Messaggio escapato per Telegram:", formattedMessage);
+
+      console.log('Messaggio inviato con successo:', result);
+
+      return { status, message: result };
     } catch (error) {
-      console.error("Errore durante l'invio del messaggio:", error.message);
+      console.error('Errore durante la generazione del messaggio di output:', error.message);
       throw error;
     }
   }
+ 
 
-  sanitizeMessage(message) {
-    // Esegue l'escaping di MarkdownV2 per evitare errori in Telegram
-    return message.replace(/([_*[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
-  }
 }
 
-module.exports = new OutputHandler();
+module.exports = OutputHandler;

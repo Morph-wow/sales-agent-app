@@ -23,8 +23,38 @@ const formatLeadMessage = (lead) => {
     `;
   };
   
-  module.exports = { formatTelegramMessage };
   
+  // Funzione per formattare un messaggio di verifica
+const formatVerificationMessage = (clientOptions) => {
+  if (!Array.isArray(clientOptions) || clientOptions.length === 0) {
+    throw new Error("L'elenco delle opzioni clienti deve essere un array non vuoto.");
+  }
+
+  let message = "*Verifica Cliente*\n";
+  message += "Abbiamo trovato più clienti con il nome indicato. Rispondi con il numero corrispondente per selezionare il cliente corretto:\n";
+
+  clientOptions.forEach((option, index) => {
+    message += `\n${index + 1}. Nome: ${option.name} (Creato il: ${option.CreatedDate})`;
+  });
+
+  return message.trim();
+};
+
+// Funzione per formattare un messaggio di successo
+function formatSuccessMessage() {
+  return "Azione completata con successo.";
+}
+
+
+
+// Debug: verifica del caricamento del file
+console.log("Caricamento di formatters.js avvenuto con successo.");
+console.log("Funzioni esportate:", {
+  formatLeadMessage: typeof formatLeadMessage,
+  formatTelegramMessage: typeof formatTelegramMessage,
+  formatVerificationMessage: typeof formatVerificationMessage,
+});
+
   
   // Debug: verifica del caricamento del file
   console.log("Caricamento di formatters.js avvenuto con successo.");
@@ -33,5 +63,5 @@ const formatLeadMessage = (lead) => {
     formatTelegramMessage: typeof formatTelegramMessage,
   });
   
-  module.exports = { formatLeadMessage, formatTelegramMessage };
+  module.exports = { formatLeadMessage, formatTelegramMessage, formatVerificationMessage, formatSuccessMessage,};
   

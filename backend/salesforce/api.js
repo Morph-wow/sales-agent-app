@@ -65,6 +65,13 @@ const getLatestLeads = async () => {
 // Esegue una query generica su Salesforce
 const query = async (queryString) => {
   try {
+    // Verifica la sessione Salesforce
+    if (!conn.accessToken || !conn.instanceUrl) {
+      console.log("Access Token o Instance URL non presente. Eseguo il login...");
+      await conn.login(process.env.SALESFORCE_USERNAME, process.env.SALESFORCE_PASSWORD);
+    }
+
+    // Esegui la query
     console.log("Esecuzione query su Salesforce:", queryString);
     const result = await conn.query(queryString);
 
@@ -76,6 +83,7 @@ const query = async (queryString) => {
     throw err;
   }
 };
+
 
 
 // Recupera sessione Salesforce

@@ -1,52 +1,40 @@
-require('dotenv').config();
-const OpenAI = require('openai');
 const InputParser = require('../../parsing/modules/inputparser');
 
-describe('InputParser', () => {
-    let inputParser;
+test('InputParser - Parsing con cliente verificato', async () => {
+    const inputParser = new InputParser();
 
-    beforeAll(() => {
-        const openaiClient = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
-        });
-        inputParser = new InputParser({ openaiClient });
-    });
+    const rawMessage = "Fissa un appuntamento domani alle 15";
+    const verifiedName = {
+        clientId: "00QQy00000GCcJdMAL",
+        name: "Mario Rossi",
+    };
 
-    test('Analizza correttamente un input completo', async () => {
-        const message = 'Fissa appuntamento con Mario Rossi lunedì alle 17';
-        const context = { userId: 123, chatId: 456 };
+    // Calcola la data attesa per "domani"
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const expectedDate = tomorrow.toISOString().split('T')[0] + "T00:00:00Z";
 
-        const result = await inputParser.parseMessage(message, context);
+    const expected = {
+        intent: "schedule_appointment",
+        entities: {
+            clientName: "Mario Rossi",
+            clientId: "00QQy00000GCcJdMAL",
+            date: expectedDate, // Data attesa aggiornata dinamicamente
+            time: "15:00:00",
+        },
+    };
 
-        expect(result.intent).toBe('schedule_appointment');
-        expect(result.entities).toEqual({
-            person: 'Mario Rossi',
-            day: 'lunedì',
-            hour: '17',
-        });
-    });
+    const result = await inputParser.parseMessage(rawMessage, verifiedName);
 
-    test('Gestisce input incompleti', async () => {
-        const message = 'Fissa appuntamento con Mario Rossi alle 17';
-        const context = { userId: 123, chatId: 456 };
+    console.log("Result:", result);
 
-        const result = await inputParser.parseMessage(message, context);
-
-        expect(result.intent).toBe('schedule_appointment');
-        expect(result.entities).toEqual({
-            person: 'Mario Rossi',
-            hour: '17',
-        });
-    });
-
-    test('Restituisce errore per input non riconosciuti', async () => {
-        const message = 'Ciao, come stai?';
-        const context = { userId: 123, chatId: 456 };
-
-        const result = await inputParser.parseMessage(message, context);
-
-        expect(result.intent).toBe(null);
-        expect(result.entities).toEqual({});
-    });
+    expect(result.intent).toBe(expected.intent);
+    expect(result.entities.clientName).toBe(expected.entities.clientName);
+    expect(result.entities.clientId).toBe(expected.entities.clientId);
+    expect(result.entities.date).toBe(expected.entities.date);
+    expect(result.entities.time).toBe(expected.entities.time);
 });
+
+
 

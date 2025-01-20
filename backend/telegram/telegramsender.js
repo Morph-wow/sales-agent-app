@@ -1,6 +1,6 @@
 const { Telegraf } = require('telegraf');
 const dotenv = require('dotenv');
-dotenv.config({ path: __dirname + '/../.env' });
+dotenv.config({ path: __dirname + '/../../.env' });
 
 console.log("Token Telegram:", process.env.TELEGRAM_BOT_TOKEN);
 console.log("Chat ID:", process.env.TELEGRAM_CHAT_ID);

@@ -1,113 +1,137 @@
-const normalizers = require('./normalizers');
-const salesForceSearch = require('./salesforcesearch');
+require('dotenv').config();
+const { OpenAI } = require('openai');
+const { normalizeDateTime } = require('../normalizers');
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 class InputParser {
-  constructor({ openaiClient }) {
-    this.openaiClient = openaiClient; // OpenAI Client
-  }
-
-  /**
-   * Normalizza i dati ricevuti.
-   * @param {Object} rawData - Dati grezzi forniti da Parser.
-   * @returns {Object} Dati normalizzati.
-   */
-  async parse(rawData) {
-    const { message, verifiedName } = rawData;
-    const { name, clientId } = verifiedName;
-
-    if (!clientId) {
-      throw new Error("ID cliente non valido. Verifica il processo di ricerca del cliente.");
+    constructor() {
+        this.today = this.calculateToday();
     }
 
-    let parsedMessage;
-    try {
-      // Chiamata a OpenAI per analizzare il messaggio
-      parsedMessage = await this.callOpenAI(message);
-    } catch (error) {
-      console.error("Errore durante il parsing con OpenAI:", error.message);
-      // Fallback con normalizzatori predefiniti
-      parsedMessage = {
-        intent: null,
-        entities: {
-          date: normalizers.normalizeDate(message),
-          time: normalizers.normalizeTime(message),
-        },
-      };
+    calculateToday() {
+        const today = new Date();
+        return today.toISOString().split('T')[0];
     }
 
-    const { intent, entities } = parsedMessage;
-    const date = entities.date || normalizers.normalizeDate(message);
-    const time = entities.time || normalizers.normalizeTime(message);
+    async preparseDate(rawMessage) {
+        let normalizedDate = null;
 
-    if (!intent || !date || !time) {
-      throw new Error("Dati incompleti dopo l'elaborazione.");
+        try {
+            // Usa normalizzatori per estrarre e normalizzare la data
+            const extractedDateInfo = this.extractDateInfo(rawMessage);
+            if (extractedDateInfo) {
+                normalizedDate = normalizeDateTime(
+                    extractedDateInfo.day,
+                    extractedDateInfo.time
+                );
+                console.log("Data normalizzata con normalizers:", normalizedDate);
+            }
+        } catch (error) {
+            console.warn("Normalizers non è riuscito a normalizzare la data. Passo all'IA.", error.message);
+        }
+
+        // Fallback su OpenAI se normalizzatori falliscono
+        if (!normalizedDate) {
+            try {
+                const datePrompt = `
+                    Sei un assistente che interpreta date relative in base alla data corrente.
+                    Oggi è ${this.today}. Determina una data esatta dal seguente input:
+                    "${rawMessage}".
+
+                    Rispondi esclusivamente con una data in formato JSON con due campi: "date" (ISO YYYY-MM-DD) e "time" (HH:mm).
+                    Esempio: {"date": "2025-01-17", "time": "15:00"}.
+                `;
+
+                const aiResponse = await openai.chat.completions.create({
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "user", content: datePrompt }],
+                });
+
+                const aiResult = JSON.parse(aiResponse.choices[0].message.content.trim());
+                normalizedDate = `${aiResult.date}T${aiResult.time}:00Z`;
+                console.log("Data normalizzata con l'IA:", normalizedDate);
+            } catch (error) {
+                console.error("Errore durante il parsing della data con l'IA:", error.message);
+                throw new Error("Impossibile normalizzare la data.");
+            }
+        }
+
+        return normalizedDate;
     }
 
-    const normalizedName = `${name} (ID: ${clientId})`;
+    extractDateInfo(rawMessage) {
+        // Implementa una logica per estrarre day e time dal messaggio
+        const dateRegex = /(domani|dopodomani|tra una settimana|lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)\s*(alle)?\s*(\d{1,2}:\d{2})?/i;
+        const match = rawMessage.match(dateRegex);
 
-    // Costruzione dei dati normalizzati
-    return {
-      intent,
-      entities: {
-        clientName: normalizedName,
-        clientId,
-        date,
-        time,
-      },
-    };
-  }
-
-  /**
-   * Chiamata a OpenAI per analizzare il messaggio.
-   * @param {String} message - Messaggio grezzo dell'utente.
-   * @returns {Object} Risultato del parsing di OpenAI.
-   */
-  async callOpenAI(message) {
-    try {
-      const response = await this.openaiClient.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          {
-            role: 'system',
-            content: `
-Sei un assistente che analizza messaggi per estrarre intenti e dettagli strutturati.
-Rispondi esclusivamente in formato JSON. Non aggiungere testo extra.
-Se non riesci a identificare entità o intenzioni, restituisci:
-{
-  "intent": null,
-  "entities": {}
-}
-Esempio:
-Input: "Fissa un appuntamento con Mario Rossi domani alle 15"
-Output:
-{
-  "intent": "schedule_appointment",
-  "entities": {
-    "clientName": "Mario Rossi",
-    "date": "YYYY-MM-DD",
-    "time": "15:00"
-  }
-}
-Analizza il seguente messaggio: "${message}"
-            `,
-          },
-          { role: 'user', content: `Analizza il seguente messaggio: "${message}"` },
-        ],
-        temperature: 0.2,
-      });
-
-      const result = JSON.parse(response.choices[0].message.content);
-
-      if (!result.intent || !result.entities) {
-        throw new Error("Risultato OpenAI incompleto.");
-      }
-
-      return result;
-    } catch (error) {
-      console.error("Errore durante il parsing con OpenAI:", error.message);
-      throw error;
+        if (match) {
+            return {
+                day: match[1],
+                time: match[3] || "00:00", // Se l'orario non è specificato, default a mezzanotte
+            };
+        }
+        throw new Error("Nessuna informazione valida sulla data trovata nel messaggio.");
     }
-  }
+
+    async parseMessage(rawMessage, verifiedClient) {
+        try {
+            console.log("InputParser - Parametri ricevuti:", { rawMessage, verifiedClient });
+
+            const today = this.today;
+
+            const prompt = `Sei un assistente che analizza messaggi per estrarre intenti e dettagli strutturati.
+            Rispondi esclusivamente in formato JSON. Non aggiungere testo extra.
+
+            Oggi è ${today}. Usa questa data come riferimento per interpretare indicazioni temporali relative come "domani" o "dopodomani".
+
+            Cliente verificato:
+            - Nome: ${verifiedClient?.clientName}
+            - ID Cliente: ${verifiedClient?.clientId}
+
+            Utilizza il nome e l'ID cliente indicati sopra per popolare rispettivamente i campi "clientName" e "clientId" nel JSON.
+
+            Esempio:
+            Input: "Fissa un appuntamento per mario domani alle 15"
+            Output:
+            {
+              "intent": "schedule_appointment",
+              "entities": {
+                "clientName": "Mario Rossi",
+                "clientId": "12345",
+                "date": "2025-01-17T15:00:00Z",
+                "time": "15:00:00"
+              }
+            }
+
+            Analizza il seguente messaggio: "${rawMessage}"`;
+
+            console.log("Prompt generato per OpenAI:", prompt);
+
+            const response = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: prompt }],
+            });
+
+            const result = JSON.parse(response.choices[0].message.content);
+            console.log("Risposta completa da OpenAI:", response);
+
+            // Fallback per garantire che clientName e clientId siano presenti
+            result.entities.clientName = result.entities.clientName || verifiedClient.clientName;
+            result.entities.clientId = result.entities.clientId || verifiedClient.clientId;
+
+            if (!result.intent || !result.entities) {
+                throw new Error("Risultato incompleto o malformato.");
+            }
+
+            return result;
+        } catch (error) {
+            console.error("Errore durante il parsing:", error.message);
+            throw new Error("Errore durante il parsing del messaggio.");
+        }
+    }
 }
 
 module.exports = InputParser;

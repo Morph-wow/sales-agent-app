@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for parsing/modules/actionhandler.js</title>
+    <title>Code coverage report for backend/parsing/modules/actionhandler.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">parsing/modules</a> actionhandler.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">backend/parsing/modules</a> actionhandler.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">11.76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>2/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">11.76% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>2/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -110,28 +110,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -150,15 +150,15 @@
 };
 &nbsp;
 class ActionHandler {
-  async handle(parsedInput, context, callback) {
-    const { intent, entities } = parsedInput;
+<span class="fstat-no" title="function not covered" >  as</span>ync handle(parsedInput, context, callback) {
+    const { intent, entities } = <span class="cstat-no" title="statement not covered" >parsedInput;</span>
 &nbsp;
-    console.log("Intent rilevato:", intent);
-    console.log("Entità ricevute:", entities);
+<span class="cstat-no" title="statement not covered" >    console.log("Intent rilevato:", intent);</span>
+<span class="cstat-no" title="statement not covered" >    console.log("Entità ricevute:", entities);</span>
 &nbsp;
     // Trova l'azione corrispondente all'intent
-    const action = intentActionMap[intent];
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!action) {
+    const action = <span class="cstat-no" title="statement not covered" >intentActionMap[intent];</span>
+<span class="cstat-no" title="statement not covered" >    if (!action) {</span>
       const errorMessage = <span class="cstat-no" title="statement not covered" >`Intent non riconosciuto: "${intent}".`;</span>
 <span class="cstat-no" title="statement not covered" >      console.error(errorMessage);</span>
 <span class="cstat-no" title="statement not covered" >      return callback({</span>
@@ -168,11 +168,11 @@ class ActionHandler {
       });
     }
 &nbsp;
-    try {
-      console.log(`Esecuzione dell'azione per l'intent "${intent}"...`);
-      const result = await action.execute({ entities, context });
-      console.log("Azione completata con successo:", result);
-      return callback(result);
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      console.log(`Esecuzione dell'azione per l'intent "${intent}"...`);</span>
+      const result = <span class="cstat-no" title="statement not covered" >await action.execute({ entities, context });</span>
+<span class="cstat-no" title="statement not covered" >      console.log("Azione completata con successo:", result);</span>
+<span class="cstat-no" title="statement not covered" >      return callback(result);</span>
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >      console.error(`Errore durante l'esecuzione dell'azione per l'intent "${intent}":`, error.message);</span>
 <span class="cstat-no" title="statement not covered" >      return callback({</span>
@@ -193,16 +193,16 @@ module.exports = new ActionHandler();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-16T18:17:11.825Z
+                at 2025-01-20T16:00:10.229Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     

@@ -1,5 +1,5 @@
-const outputhandler = require('../../parsing/modules/outputhandler');
-const telegramSender = require('../../telegram/telegramsender');
+const OutputHandler = require('../../parsing/modules/outputhandler');
+const { sendMessage, sanitizeMarkdown } = require('../../telegram/telegramsender');
 
 jest.mock('../../telegram/telegramsender', () => ({
   sendMessage: jest.fn(),
@@ -18,24 +18,49 @@ describe('outputhandler.js', () => {
       context: { chatId: 456, userId: 123 },
     };
 
-    telegramSender.sendMessage.mockResolvedValueOnce({ status: 'success' });
+    sendMessage.mockResolvedValueOnce({ status: 'success' });
 
-    const result = await outputhandler.generate(actionResult);
+    const handler = new OutputHandler();
+    const result = await handler.generate(actionResult);
 
-    expect(telegramSender.sanitizeMarkdown).toHaveBeenCalledWith(actionResult.message);
-    expect(telegramSender.sendMessage).toHaveBeenCalledWith(456, expect.stringContaining('Azione completata con successo:'));
+    expect(sanitizeMarkdown).toHaveBeenCalledWith(actionResult.message);
+    expect(sendMessage).toHaveBeenCalledWith(456, expect.stringContaining('Azione completata con successo:'));
     expect(result).toEqual({ status: 'success', message: { status: 'success' } });
   });
 
-  test('Gestisce errori nella generazione dell\'output', async () => {
+  test('Genera un messaggio di verifica correttamente', async () => {
+    const actionResult = {
+      type: 'verification',
+      context: { chatId: 456 },
+      options: [
+        { name: 'Mario Rossi', creationDate: '2023-01-01' },
+        { name: 'Mario Rossi', creationDate: '2023-02-15' },
+      ],
+    };
+
+    const handler = new OutputHandler();
+    await expect(handler.generate(actionResult)).resolves.not.toThrow();
+
+    expect(sendMessage).toHaveBeenCalledWith(
+      456,
+      expect.stringContaining('Mario Rossi (creato il 2023-01-01)')
+    );
+    expect(sendMessage).toHaveBeenCalledWith(
+      456,
+      expect.stringContaining('Mario Rossi (creato il 2023-02-15)')
+    );
+  });
+
+  test("Gestisce errori nella generazione dell'output", async () => {
     const actionResult = {
       status: 'error',
-      message: 'Errore durante la creazione dell\'appuntamento.',
+      message: "Errore durante la creazione dell'appuntamento.",
       context: { chatId: undefined, userId: 123 },
     };
 
-    telegramSender.sendMessage.mockRejectedValueOnce(new Error("chatId non definito o mancante."));
+    sendMessage.mockRejectedValueOnce(new Error('chatId non definito o mancante.'));
 
-    await expect(outputhandler.generate(actionResult)).rejects.toThrow('chatId non definito o mancante.');
+    const handler = new OutputHandler();
+    await expect(handler.generate(actionResult)).rejects.toThrow('chatId non definito o mancante.');
   });
 });

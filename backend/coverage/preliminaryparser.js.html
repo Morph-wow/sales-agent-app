@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for parsing/modules/actionhandler.js</title>
+    <title>Code coverage report for preliminaryparser.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">parsing/modules</a> actionhandler.js</h1>
+        <h1><a href="index.html">All files</a> preliminaryparser.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">76.92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>10/13</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">76.92% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>10/13</span>
             </div>
         
             
@@ -98,13 +98,21 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -112,25 +120,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -139,53 +132,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const intentActionMap = {
-  schedule_appointment: require('./actions/scheduleappointment'),
-};
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">require('dotenv').config();
+const { OpenAI } = require('openai');
 &nbsp;
-class ActionHandler {
-  async handle(parsedInput, context, callback) {
-    const { intent, entities } = parsedInput;
+// Configura l'istanza OpenAI
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY, // Usa la chiave API dal file .env
+});
 &nbsp;
-    console.log("Intent rilevato:", intent);
-    console.log("Entità ricevute:", entities);
+class PreliminaryParser {
+    async extractName(rawMessage) {
+        try {
+            const prompt = `Analizza il seguente messaggio e restituisci solo il nome del cliente. Se non trovi un nome, restituisci "Nessun nome trovato".\n\n"${rawMessage}"`;
 &nbsp;
-    // Trova l'azione corrispondente all'intent
-    const action = intentActionMap[intent];
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!action) {
-      const errorMessage = <span class="cstat-no" title="statement not covered" >`Intent non riconosciuto: "${intent}".`;</span>
-<span class="cstat-no" title="statement not covered" >      console.error(errorMessage);</span>
-<span class="cstat-no" title="statement not covered" >      return callback({</span>
-        status: 'error',
-        context,
-        message: errorMessage,
-      });
+            // Chiamata al completamento di chat
+            const response = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: prompt }],
+            });
+&nbsp;
+            // Estrazione del nome dalla risposta
+            const extractedName = response.choices[0].message.content.trim();
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (extractedName === "Nessun nome trovato") {
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+&nbsp;
+            return extractedName;
+        } catch (error) {
+<span class="cstat-no" title="statement not covered" >            console.error("Errore durante l'estrazione del nome:", error.message);</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error("Errore nell'estrazione del nome.");</span>
+        }
     }
-&nbsp;
-    try {
-      console.log(`Esecuzione dell'azione per l'intent "${intent}"...`);
-      const result = await action.execute({ entities, context });
-      console.log("Azione completata con successo:", result);
-      return callback(result);
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      console.error(`Errore durante l'esecuzione dell'azione per l'intent "${intent}":`, error.message);</span>
-<span class="cstat-no" title="statement not covered" >      return callback({</span>
-        status: 'error',
-        context,
-        message: `Errore durante l'esecuzione dell'azione "${intent}".`,
-        error: error.message,
-      });
-    }
-  }
 }
 &nbsp;
-module.exports = new ActionHandler();
+module.exports = PreliminaryParser;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -193,16 +175,16 @@ module.exports = new ActionHandler();
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-16T18:17:11.825Z
+                at 2025-01-14T17:15:01.747Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="sorter.js"></script>
+        <script src="block-navigation.js"></script>
     </body>
 </html>
     

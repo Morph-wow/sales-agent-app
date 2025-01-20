@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/25</span>
+                <span class='fraction'>5/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.45% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/11</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">20.83% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/24</span>
+                <span class='fraction'>5/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,16 +125,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,30 +144,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,17 +179,17 @@ const { zonedTimeToUtc } = require('date-fns-tz'); // Import corretto
 const salesforceApi = require('../salesforce/api');
 &nbsp;
 // Funzione per normalizzare data e ora
-function normalizeDateTime(day, time) {
-  const today = new Date();
+function <span class="fstat-no" title="function not covered" >normalizeDateTime(</span>day, time) {
+  const today = <span class="cstat-no" title="statement not covered" >new Date();</span>
   let targetDate;
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (day.toLowerCase() === 'domani') {
+<span class="cstat-no" title="statement not covered" >  if (day.toLowerCase() === 'domani') {</span>
 <span class="cstat-no" title="statement not covered" >    targetDate = addDays(today, 1); </span>// Aggiungi un giorno
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (day.toLowerCase() === 'dopodomani') {
+  } else <span class="cstat-no" title="statement not covered" >if (day.toLowerCase() === 'dopodomani') {</span>
 <span class="cstat-no" title="statement not covered" >    targetDate = addDays(today, 2); </span>// Aggiungi due giorni
   } else {
     // Gestione dei giorni della settimana
-    const daysOfWeek = {
+    const daysOfWeek = <span class="cstat-no" title="statement not covered" >{</span>
       lunedì: 1,
       martedì: 2,
       mercoledì: 3,
@@ -199,30 +199,30 @@ function normalizeDateTime(day, time) {
       domenica: 0,
     };
 &nbsp;
-    const targetDay = daysOfWeek[day.toLowerCase().replace(' prossimo', '')];
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (targetDay === undefined) <span class="cstat-no" title="statement not covered" >throw new Error('Giorno non riconosciuto');</span>
+    const targetDay = <span class="cstat-no" title="statement not covered" >daysOfWeek[day.toLowerCase().replace(' prossimo', '')];</span>
+<span class="cstat-no" title="statement not covered" >    if (targetDay === undefined) <span class="cstat-no" title="statement not covered" >throw new Error('Giorno non riconosciuto');</span></span>
 &nbsp;
-    const todayDay = today.getDay();
-    const diffDays = day.includes('prossimo')
-      ? <span class="branch-0 cbranch-no" title="branch not covered" >(targetDay - todayDay + 7) % 7 + 7 </span>// Salta alla settimana successiva
+    const todayDay = <span class="cstat-no" title="statement not covered" >today.getDay();</span>
+    const diffDays = <span class="cstat-no" title="statement not covered" >day.includes('prossimo')</span>
+      ? (targetDay - todayDay + 7) % 7 + 7 // Salta alla settimana successiva
       : (targetDay - todayDay + 7) % 7;
 &nbsp;
-    targetDate = addDays(today, diffDays);
+<span class="cstat-no" title="statement not covered" >    targetDate = addDays(today, diffDays);</span>
   }
 &nbsp;
   // Imposta l'ora
-  const [hours, minutes = <span class="branch-0 cbranch-no" title="branch not covered" >0]</span> = time.split(':').map(Number);
-  targetDate.setHours(hours, minutes, 0, 0);
+  const [hours, minutes = <span class="branch-0 cbranch-no" title="branch not covered" >0]</span> = <span class="cstat-no" title="statement not covered" >time.split(':').map(Number);</span>
+<span class="cstat-no" title="statement not covered" >  targetDate.setHours(hours, minutes, 0, 0);</span>
 &nbsp;
-  return targetDate.toISOString(); // Restituisce il formato ISO con millisecondi
+<span class="cstat-no" title="statement not covered" >  return targetDate.toISOString(); </span>// Restituisce il formato ISO con millisecondi
 }
 &nbsp;
 // Funzione per trovare un cliente su Salesforce
-async function findClientByName(clientName) {
-  const query = `SELECT Id FROM Contact WHERE Name = '${clientName}' LIMIT 1`;
-  const result = await salesforceApi.query(query);
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (result.records.length &gt; 0) {
-    return result.records[0].Id;
+async function <span class="fstat-no" title="function not covered" >findClientByName(</span>clientName) {
+  const query = <span class="cstat-no" title="statement not covered" >`SELECT Id FROM Contact WHERE Name = '${clientName}' LIMIT 1`;</span>
+  const result = <span class="cstat-no" title="statement not covered" >await salesforceApi.query(query);</span>
+<span class="cstat-no" title="statement not covered" >  if (result.records.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >    return result.records[0].Id;</span>
   }
 <span class="cstat-no" title="statement not covered" >  throw new Error('Cliente non trovato');</span>
 }
@@ -235,7 +235,7 @@ module.exports = { normalizeDateTime, findClientByName };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-10T10:56:04.501Z
+                at 2025-01-16T17:34:04.098Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -1,66 +1,69 @@
+const { fromZonedTime, formatInTimeZone } = require('date-fns-tz');
 const salesforceApi = require('../../../salesforce/api');
-const { normalizeDateTime, findClientByName } = require('../../normalizers'); // Import normalizers
 
 module.exports = {
-  async execute({ entities, context, openai }) {
+  async execute({ entities, context }) {
     const { chatId, userId } = context;
-    const { time, date, clientName } = entities;
+    const { time, date, clientId } = entities;
 
-    // Log per debugging
     console.log("Esecuzione di scheduleappointment...");
     console.log("Entità ricevute:", entities);
-    console.log("Contesto ricevuto:", context);
 
-    if (!time || !date || !clientName) {
-      console.warn("Dati mancanti per fissare l'appuntamento:", { time, date, clientName });
+    if (!time || !date || !clientId) {
+      console.warn("Dati mancanti per fissare l'appuntamento:", { time, date, clientId });
       return {
         status: 'error',
         context: { chatId, userId },
-        message: 'Dati mancanti. Controlla il nome, data e ora.',
+        message: 'Dati mancanti. Controlla il clientId, data e ora.',
       };
     }
 
-    // Normalizzazione dei dati
-    let normalizedDateTime;
     try {
-      normalizedDateTime = normalizeDateTime(date, time); // Normalizza data e ora
-      console.log("Data e ora normalizzate:", normalizedDateTime);
-    } catch (error) {
-      console.error("Errore durante la normalizzazione della data e ora:", error.message);
-      return {
-        status: 'error',
-        context: { chatId, userId },
-        message: 'Errore nella normalizzazione della data e ora. Controlla il formato inserito.',
+      if (!salesforceApi.conn.accessToken || !salesforceApi.conn.instanceUrl) {
+        console.log("Access Token o Instance URL non presente. Eseguo il login...");
+        await salesforceApi.conn.login(process.env.SALESFORCE_USERNAME, process.env.SALESFORCE_PASSWORD);
+      }
+
+      // Configura il fuso orario locale
+      const timeZone = 'Europe/Rome';
+
+      // Combina data e ora in formato ISO
+      const localDateTime = `${date.split('T')[0]}T${time}`;
+      const zonedDate = fromZonedTime(new Date(localDateTime), timeZone);
+
+      if (isNaN(zonedDate.getTime())) {
+        throw new Error("Formato data o ora non valido.");
+      }
+
+      // Calcola l'EndDateTime (durata di 1 ora)
+      const endDateTime = new Date(zonedDate);
+      endDateTime.setHours(endDateTime.getHours() + 1);
+
+      console.log("StartDateTime in UTC:", zonedDate.toISOString());
+      console.log("EndDateTime in UTC:", endDateTime.toISOString());
+
+      // Creazione appuntamento su Salesforce
+      const appointmentData = {
+        Subject: 'Appuntamento Fissato',
+        StartDateTime: zonedDate.toISOString(),
+        EndDateTime: endDateTime.toISOString(),
+        WhoId: clientId,
+        Description: 'Creato tramite sistema automatizzato.',
       };
-    }
 
-    // Ricerca del cliente
-    let clientId;
-    try {
-      clientId = await findClientByName(clientName); // Cerca il cliente per nome
-      console.log("Cliente trovato:", clientId);
-    } catch (error) {
-      console.error("Errore nella ricerca del cliente:", error.message);
-      return {
-        status: 'error',
-        context: { chatId, userId },
-        message: `Cliente non trovato: ${clientName}. Controlla il nome inserito.`,
-      };
-    }
+      const result = await salesforceApi.conn.sobject('Event').create(appointmentData);
 
-    // Creazione dell'appuntamento su Salesforce
-    try {
-      console.log("Tentativo di creare un appuntamento su Salesforce...");
-      const appointmentData = { dateTime: normalizedDateTime, clientId };
-      const scheduleResult = await salesforceApi.createAppointment(appointmentData, context);
+      if (!result.success) {
+        throw new Error(`Creazione fallita: ${result.errors}`);
+      }
 
-      console.log("Appuntamento creato con successo:", scheduleResult);
+      console.log("Appuntamento creato con successo:", result);
 
       return {
         status: 'success',
         context: { chatId, userId },
-        message: `Appuntamento fissato con successo per ${normalizedDateTime}.`,
-        result: scheduleResult,
+        message: `Appuntamento fissato con successo dalle ${zonedDate.toISOString()} alle ${endDateTime.toISOString()}.`,
+        result,
       };
     } catch (error) {
       console.error("Errore durante la creazione dell'appuntamento:", error.message);
@@ -73,3 +76,5 @@ module.exports = {
     }
   },
 };
+
+

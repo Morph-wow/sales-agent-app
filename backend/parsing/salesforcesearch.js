@@ -1,15 +1,16 @@
-const salesforceApi = require('../salesforce/api'); // Modulo API Salesforce
+const { query } = require('../salesforce/api'); // Importa la funzione query da api.js
 
-/**
- * Cerca un cliente su Salesforce per nome.
- * @param {string} name - Nome del cliente da cercare.
- * @returns {Promise<object>} - Risultato della ricerca (success, ambiguous, not_found).
- */
 async function searchClientByName(name) {
     try {
         // Query Salesforce per il nome del cliente
-        const query = `SELECT Id, Name, CreatedDate FROM Contact WHERE Name LIKE '%${name}%'`;
-        const results = await salesforceApi.query(query);
+        const queryString = `
+           SELECT Id, FirstName, LastName, CreatedDate 
+            FROM Lead
+            WHERE FirstName LIKE '%${name}%' OR LastName LIKE '%${name}%'
+        `;
+        console.log("Esecuzione query su Salesforce:", queryString);
+        const results = await query(queryString);
+        console.log("Risultati grezzi della query:", JSON.stringify(results, null, 2));
 
         if (!results || results.length === 0) {
             return { status: 'not_found' };
@@ -20,20 +21,20 @@ async function searchClientByName(name) {
             return {
                 status: 'success',
                 clientId: client.Id,
-                clientName: client.Name
+                clientName: `${client.FirstName} ${client.LastName}`.trim(),
             };
         }
 
         // Più clienti trovati
         const clients = results.map(client => ({
             clientId: client.Id,
-            clientName: client.Name,
-            createdAt: client.CreatedDate
+            clientName: `${client.FirstName} ${client.LastName}`.trim(),
+            createdAt: client.CreatedDate,
         }));
 
         return {
             status: 'ambiguous',
-            clients
+            clients,
         };
     } catch (error) {
         console.error('Errore durante la ricerca del cliente su Salesforce:', error);
@@ -42,5 +43,5 @@ async function searchClientByName(name) {
 }
 
 module.exports = {
-    searchClientByName
+    searchClientByName,
 };
