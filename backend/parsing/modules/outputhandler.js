@@ -10,6 +10,7 @@ class OutputHandler {
   async generate(actionResult) {
     const { status, message, context, verificationOptions } = actionResult;
     const { chatId } = context;
+    console.log("Dati inviati a OutputHandler:", verificationOptions);
 
     if (!chatId) {
       console.error('Errore: chatId non definito o mancante.');

@@ -16,12 +16,12 @@ class InputParser {
         return today.toISOString().split('T')[0];
     }
 
-    async preparseDate(rawMessage) {
+    async preparseDate(originalMessage) {
         let normalizedDate = null;
 
         try {
             // Usa normalizzatori per estrarre e normalizzare la data
-            const extractedDateInfo = this.extractDateInfo(rawMessage);
+            const extractedDateInfo = this.extractDateInfo(originalMessage);
             if (extractedDateInfo) {
                 normalizedDate = normalizeDateTime(
                     extractedDateInfo.day,
@@ -39,7 +39,7 @@ class InputParser {
                 const datePrompt = `
                     Sei un assistente che interpreta date relative in base alla data corrente.
                     Oggi è ${this.today}. Determina una data esatta dal seguente input:
-                    "${rawMessage}".
+                    "${originalMessage}".
 
                     Rispondi esclusivamente con una data in formato JSON con due campi: "date" (ISO YYYY-MM-DD) e "time" (HH:mm).
                     Esempio: {"date": "2025-01-17", "time": "15:00"}.
@@ -62,10 +62,10 @@ class InputParser {
         return normalizedDate;
     }
 
-    extractDateInfo(rawMessage) {
+    extractDateInfo(originalMessage) {
         // Implementa una logica per estrarre day e time dal messaggio
         const dateRegex = /(domani|dopodomani|tra una settimana|lunedì|martedì|mercoledì|giovedì|venerdì|sabato|domenica)\s*(alle)?\s*(\d{1,2}:\d{2})?/i;
-        const match = rawMessage.match(dateRegex);
+        const match = originalMessage.match(dateRegex);
 
         if (match) {
             return {
@@ -76,9 +76,9 @@ class InputParser {
         throw new Error("Nessuna informazione valida sulla data trovata nel messaggio.");
     }
 
-    async parseMessage(rawMessage, verifiedClient) {
+    async parseMessage(originalMessage, verifiedClient) {
         try {
-            console.log("InputParser - Parametri ricevuti:", { rawMessage, verifiedClient });
+            console.log("InputParser - Parametri ricevuti:", { originalMessage, verifiedClient });
 
             const today = this.today;
 
@@ -106,7 +106,7 @@ class InputParser {
               }
             }
 
-            Analizza il seguente messaggio: "${rawMessage}"`;
+            Analizza il seguente messaggio: "${originalMessage}"`;
 
             console.log("Prompt generato per OpenAI:", prompt);
 

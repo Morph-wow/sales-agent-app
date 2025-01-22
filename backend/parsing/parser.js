@@ -42,19 +42,25 @@ class Parser {
 
       if (searchResult.clients.length > 1) {
         // Più clienti trovati, richiede verifica da parte dell'utente
-        this.pendingVerifications.set(chatId, searchResult.clients);
+        this.pendingVerifications.set(chatId, {
+          options: searchResult.clients, // Salva le opzioni dei clienti
+          originalMessage: rawMessage,  // Salva il messaggio originale
+          context,                      // Salva il contesto originale
+      });
+        console.log("Verifiche pendenti salvate:", this.pendingVerifications);
         await outputHandler.generate({
           status: 'verification',
           context,
           verificationOptions: searchResult.clients.map(client => ({
             name: client.clientName,
-            createdDate: client.createdAt
-              ? new Date(client.createdAt).toLocaleString('it-IT')
-              : 'Data non disponibile',
-          })),
+            createdDate: client.createdAt, // Manteniamo il valore grezzo
+            
+        })),
+        
         });
         return;
       }
+      console.log("Dati per verifica:", searchResult.clients);
 
       // Step 3: Un solo cliente trovato, continua con il flusso
       const verifiedClient = searchResult.clients[0];
@@ -73,16 +79,27 @@ class Parser {
     const { chatId } = context;
     const outputHandler = new OutputHandler();
 
+    // Log per verificare l'input ricevuto e il contesto
+    console.log("Input ricevuto per ambiguità:", response);
+    console.log("ChatId associato:", chatId);
+
     try {
-      const options = this.pendingVerifications.get(chatId);
-      if (!options) {
-        await outputHandler.generate({
-          status: 'error',
-          context,
-          message: "Nessuna verifica in corso per questo chat ID.",
-        });
-        return;
+      const verificationData = this.pendingVerifications.get(chatId);
+  
+      if (!verificationData) {
+          console.log("Nessuna verifica trovata per chatId:", chatId);
+          await outputHandler.generate({
+              status: 'error',
+              context,
+              message: "Nessuna verifica in corso per questo chat ID.",
+          });
+          return;
       }
+  
+      const { options, originalMessage } = verificationData; // Recupera anche il messaggio originale
+  
+      console.log("Opzioni trovate per chatId:", options);
+      console.log("Messaggio originale:", originalMessage);
 
       const userSelection = parseInt(response.trim(), 10);
       if (isNaN(userSelection) || userSelection < 1 || userSelection > options.length) {
@@ -99,7 +116,7 @@ class Parser {
       console.log("Cliente selezionato:", selectedClient);
 
       // Continua con il flusso per il cliente selezionato
-      await this.processWithVerifiedClient(response, selectedClient, context);
+      await this.processWithVerifiedClient(originalMessage, selectedClient, context);
     } catch (error) {
       console.error("Errore durante la gestione della risposta all'ambiguità:", error.message);
       await outputHandler.generate({
@@ -110,35 +127,37 @@ class Parser {
     }
   }
 
-  async processWithVerifiedClient(rawMessage, verifiedClient, context) {
+  async processWithVerifiedClient(originalMessage, verifiedClient, context) {
     const { chatId } = context;
 
     try {
-      // Step 1: Parsing del messaggio
-      const inputParser = new InputParser();
-      const normalizedData = await inputParser.parseMessage(rawMessage, verifiedClient);
-      console.log("Dati normalizzati:", normalizedData);
+        // Step 1: Parsing del messaggio con il messaggio originale
+        const inputParser = new InputParser();
+        const normalizedData = await inputParser.parseMessage(originalMessage, verifiedClient);
+        console.log("Dati normalizzati:", normalizedData);
+        console.log("Messaggio originale passato a InputParser:", originalMessage);
 
-      // Step 2: Gestione Azione
-      const actionHandler = new ActionHandler();
-      const actionResult = await new Promise((resolve) => {
-        actionHandler.handle(normalizedData, context, resolve);
-      });
-      console.log("Risultato dell'azione:", actionResult);
+        // Step 2: Gestione Azione
+        const actionHandler = new ActionHandler();
+        const actionResult = await new Promise((resolve) => {
+            actionHandler.handle(normalizedData, context, resolve);
+        });
+        console.log("Risultato dell'azione:", actionResult);
 
-      // Step 3: Output del risultato
-      const outputHandler = new OutputHandler();
-      await outputHandler.generate(actionResult);
+        // Step 3: Output del risultato
+        const outputHandler = new OutputHandler();
+        await outputHandler.generate(actionResult);
     } catch (error) {
-      console.error("Errore durante l'elaborazione del cliente verificato:", error.message);
-      const outputHandler = new OutputHandler();
-      await outputHandler.generate({
-        status: 'error',
-        context,
-        message: "Errore durante l'elaborazione. Contatta il supporto.",
-      });
+        console.error("Errore durante l'elaborazione del cliente verificato:", error.message);
+        const outputHandler = new OutputHandler();
+        await outputHandler.generate({
+            status: 'error',
+            context,
+            message: "Errore durante l'elaborazione. Contatta il supporto.",
+        });
     }
-  }
+}
+
 }
 
 module.exports = new Parser();

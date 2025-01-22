@@ -34,7 +34,7 @@ const formatVerificationMessage = (clientOptions) => {
   message += "Abbiamo trovato più clienti con il nome indicato. Rispondi con il numero corrispondente per selezionare il cliente corretto:\n";
 
   clientOptions.forEach((option, index) => {
-    message += `\n${index + 1}. Nome: ${option.name} (Creato il: ${option.CreatedDate})`;
+    message += `\n${index + 1}. Nome: ${option.name} (Creato il: ${option.createdDate})`;
   });
 
   return message.trim();

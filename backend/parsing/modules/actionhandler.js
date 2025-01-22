@@ -38,4 +38,4 @@ class ActionHandler {
   }
 }
 
-module.exports = new ActionHandler();
+module.exports = ActionHandler;
